@@ -2,7 +2,7 @@
 
 # TIU Campus Navigation
 
-**Real-time indoor pathfinding across a 1:1 scale 3D model of a university building.**
+**Indoor pathfinding across a 1:1 scale 3D model of a university building.**
 
 Pick a start and a destination. Get the route, the distance and the walking time —
 then follow it from above or from your own eye level.
@@ -32,11 +32,13 @@ Enter where you are and where you're going. The router returns a path, the dista
 
 The first-person mode is the point. An overhead map tells you where a room *is*; walking the corridor with the path on the floor in front of you tells you how to *get there*. Most indoor wayfinding tools stop at the first one.
 
-### Live navigation
+### Walk it before you walk it
 
-<img src="docs/nav-live.webp" alt="Navigation running, with the position marker following the path" width="100%">
+<img src="docs/nav-live.webp" alt="The route animating, with a marker travelling along the path" width="100%">
 
-<sub>Once navigation starts, your position marker follows the route and the remaining distance updates as you move.</sub>
+<sub>Starting navigation animates a marker along the full route, so you can watch the way through before you set off.</sub>
+
+This is a **route animation, not live position tracking** — and that's deliberate. GPS doesn't work indoors, and the alternatives (Wi-Fi trilateration, BLE beacons) mean hardware in every corridor and accuracy that still drops you in the wrong room. Rather than ship unreliable positioning, the route plays itself: you see the whole path, the turns and the floor changes before you start walking, which is what you actually need from a building you don't know.
 
 ---
 
@@ -126,7 +128,7 @@ flowchart TB
 
     R3 --> TOP["Overhead view"]
     R3 --> FP["First-person view"]
-    R3 --> LIVE["Live position tracking"]
+    R3 --> LIVE["Animated route playback"]
 ```
 
 ### One source of truth
